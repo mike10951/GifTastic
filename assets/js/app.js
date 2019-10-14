@@ -1,4 +1,4 @@
-var moviesList = [
+var topics = [
     "The Matrix",
     "Fight Club",
     "The Grand Budapest Hotel",
@@ -16,8 +16,8 @@ $("#add-movie").on("click", function(evt) {
     $("#buttons").empty();
     var newMovie = $("#text-movie").val().trim();
     console.log(newMovie);
-    moviesList.push(newMovie);
-    console.log(moviesList);
+    topics.push(newMovie);
+    console.log(topics);
     createButtons();
 });
 
@@ -26,7 +26,7 @@ $("#buttons").on("click", "button", function() {
     var movie = $(this).attr("movie-title");
     //Constructing a URL to search giphy for a movie
     var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" +
-    movie + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
+    movie + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
     //Performing AJAX GET request
     $.ajax({
         url: queryUrl,
@@ -55,6 +55,7 @@ $("#buttons").on("click", "button", function() {
                     movieImage.attr("data-state", "still");
                     gifDiv.append(ratingP);
                     gifDiv.append(movieImage);
+                    gifDiv.addClass("gif-div");
                     $("#gifs-appear-here").prepend(gifDiv);
                 }
             }
@@ -73,11 +74,11 @@ $("#gifs-appear-here").on("click", "img", function() {
 });
 
 function createButtons() {
-    for (i = 0; i < moviesList.length; i++) {
+    for (i = 0; i < topics.length; i++) {
         var movieButton = $("<button>");
         movieButton.addClass("btn");
-        movieButton.text(moviesList[i]);
-        movieButton.attr("movie-title", moviesList[i]);
+        movieButton.text(topics[i]);
+        movieButton.attr("movie-title", topics[i]);
         $("#buttons").append(movieButton);
     }    
 }
