@@ -1,0 +1,9 @@
+body {
+    background: black;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+}
+.btn {
+    padding: 20px;
+    margin: 10px;
+}
